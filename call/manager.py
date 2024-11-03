@@ -15,6 +15,16 @@ class CallManager:
         end = CallRegister.objects.filter(call_id=self.call, type='END').first()
         return start,end
     
+    def call_start_date_time(self)-> tuple:
+        """"
+        Returns the date and time of the call
+        """
+        start, end = self.call_find_end_start()
+        start_date = start.timestamp.date()
+        start_hour = start.timestamp.time()
+        return start_date, start_hour
+        
+    
     def duration(self,start,end):
         duration = end - start
         duration_seconds = timedelta(seconds=duration.total_seconds())
@@ -39,7 +49,7 @@ class CallManager:
         minutes, seconds = divmod(remainder, 60)
         return f"{int(hours)}h{int(minutes)}m{int(seconds)}s"
     
-    def call_invoice(self):
+    def call_invoice(self)-> float:
         """
         Return the call's cost.
         """
@@ -71,13 +81,30 @@ class CallManager:
         minutes, seconds = divmod(duration.total_seconds(), 60)
         
         if seconds > 0:
-            minutes =+ 1
+            minutes += 1
             
         call_tax = minutes * tax
         invoice = call_tax + invoice
         
         return invoice
         
+    def call_invoice_data(self) -> dict:
+        """
+        Return invoice's data
+        """
+        source = self.call.source
+        date, time = self.call_start_date_time()
+        duration = self.call_duration()
+        value = self.call_invoice()
+        
+        call_invoice_date = {
+            "source": source,
+            "date": date,
+            "time": time,
+            "duration": duration,
+            "value": value
+        }
+        return call_invoice_date
         
         
         
