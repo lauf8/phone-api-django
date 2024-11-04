@@ -21,4 +21,4 @@ class CallRegister(models.Model):
         default='START',
     )
     timestamp = models.DateTimeField()
-    call_id = models.ForeignKey(Call,on_delete=models.DO_NOTHING)
+    call = models.ForeignKey(Call,on_delete=models.DO_NOTHING)

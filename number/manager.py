@@ -24,7 +24,7 @@ class NumberManager():
         calls = self.calls_month(year=int(year),month=int(month))
         invoices = []
         for call in calls:
-            call_object = Call.objects.get(pk=call.call_id.pk)
+            call_object = Call.objects.get(pk=call.call.pk)
             call_manager = CallManager(call=call_object)
             invoice = call_manager.call_invoice_data()
             

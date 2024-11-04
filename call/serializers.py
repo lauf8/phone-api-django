@@ -9,7 +9,7 @@ class CallSerializer(serializers.HyperlinkedModelSerializer):
 class CallRegisterSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CallRegister
-        fields = ['type', 'timestamp','call_id']
+        fields = ['type', 'timestamp','call']
 
 
 class CallInvoceSerializer(serializers.Serializer):
