@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from person.models import Person
-from .models import Number
+from number.models import Number
 
 class NumberModelTest(TestCase):
 
