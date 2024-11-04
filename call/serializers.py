@@ -14,7 +14,7 @@ class CallRegisterSerializer(serializers.HyperlinkedModelSerializer):
 
 class CallInvoceSerializer(serializers.Serializer):
     
-    source = serializers.IntegerField()
+    source = serializers.CharField(max_length=15)
     date = serializers.DateField()
     time = serializers.TimeField()
     duration = serializers.CharField(max_length=10)

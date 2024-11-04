@@ -22,14 +22,14 @@ class NumberManager():
         if not year and  not month:
             year,month = get_last_month()
         calls = self.calls_month(year=int(year),month=int(month))
-        invoices = {}
+        invoices = []
         for call in calls:
             call_object = Call.objects.get(pk=call.call_id.pk)
             call_manager = CallManager(call=call_object)
             invoice = call_manager.call_invoice_data()
             
             if invoice is not None:
-                invoices.update(invoice)
+                invoices.append(invoice)
             
             
         return invoices

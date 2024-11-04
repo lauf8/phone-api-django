@@ -24,7 +24,7 @@ class NumberInvoiceView(APIView):
             invoices = number_manager.number_invoice(year=int(year), month=int(month))
         else: 
             invoices = number_manager.number_invoice()
-            
-        serializer = CallInvoceSerializer(data=invoices)  
+        
+        serializer = CallInvoceSerializer(data=invoices, many=True)  
         serializer.is_valid(raise_exception=True)
         return Response(invoices, status=status.HTTP_200_OK)

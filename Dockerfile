@@ -14,6 +14,8 @@ RUN pip install -r requirements.txt
 
 COPY . /code/
 
+ENV STATIC_ROOT=/code/staticfiles
+
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
