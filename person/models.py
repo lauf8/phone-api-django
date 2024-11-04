@@ -5,11 +5,11 @@ class Person(models.Model):
     address = models.TextField()
     email = models.EmailField()
     TYPE_PERSON = [
-        ('JUŔICA', 'JUŔICA'),
+        ('JUŔIDICA', 'JUŔIDICA'),
         ('FÍSICA', 'FÍSICA'),
     ]
     type = models.CharField(
-        max_length=6,
+        max_length=10,
         choices=TYPE_PERSON,
         default='FÍSICA',
     )
