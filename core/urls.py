@@ -14,5 +14,6 @@ router.register(r'call-register', CallRegsiterViewSet, basename='call-register')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('call/',include('call.urls'))
+    path('call/',include('call.urls')),
+    path('number/',include('number.urls')),
 ]

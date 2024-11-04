@@ -15,14 +15,12 @@ class CallRegsiterViewSet(viewsets.ModelViewSet):
     queryset = CallRegister.objects.all()
     serializer_class = CallRegisterSerializer
     
-
-
 class CallInvoiceView(APIView):
     def get(self, request, pk):  
         call = get_object_or_404(Call, pk=pk)
         call_manager = CallManager(call=call)
         invoice = call_manager.call_invoice_data()
         serializer = CallInvoceSerializer(data=invoice)  
-        serializer.is_valid(raise_exception=True)  # Valida os dados
+        serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)

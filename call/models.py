@@ -9,6 +9,7 @@ class Call(models.Model):
     def __str__(self) -> str:
         return f"{self.source} - {self.destination}"
     
+    
 class CallRegister(models.Model):
     TYPE_CALL = [
         ('START', 'START'),

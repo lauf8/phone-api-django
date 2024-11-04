@@ -84,7 +84,7 @@ class CallManager:
             minutes += 1
             
         call_tax = minutes * tax
-        invoice = call_tax + invoice
+        invoice = round(call_tax + invoice,2)
         
         return invoice
         
@@ -92,10 +92,10 @@ class CallManager:
         """
         Return invoice's data
         """
-        source = self.call.source
-        date, time = self.call_start_date_time()
+        source = self.call.destination.number
         duration = self.call_duration()
         value = self.call_invoice()
+        date, time = self.call_start_date_time()
         
         call_invoice_date = {
             "source": source,
