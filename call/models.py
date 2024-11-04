@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 from number.models import Number
 
 
@@ -22,3 +23,11 @@ class CallRegister(models.Model):
     )
     timestamp = models.DateTimeField()
     call = models.ForeignKey(Call,on_delete=models.DO_NOTHING)
+    
+    def clean(self):
+        if CallRegister.objects.filter(call=self.call, type=self.type).exists():
+            raise ValidationError(f"Já existe um registro do tipo '{self.type}' para essa chamada.")
+    
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
